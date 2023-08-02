@@ -7,15 +7,22 @@ const Home = () => {
     <div className="">
       <div className="container text-center">
         <div className="row">
-          <nav className="bg-dark  text-bg-danger py-2 my-5 fs-2">
+          <nav className="bg-dark  text-bg-danger text-info py-2 my-5 fs-2 fw-semibold ">
             Task ManageMent System
           </nav>
           {/* Task sidebar */}
           <div className="col col-lg-2 h-100  border-end border-info">
             <ul>
               <li>
+                <Link to="/">
+                  <button className="w-75 py-1  mb-3 rounded  hoverButton1">
+                    Home
+                  </button>
+                </Link>
+              </li>
+              <li>
                 <Link to="/addTask">
-                  <button className="  w-75 py-1  mb-3 rounded  hoverButton1 ">
+                  <button className="w-75 py-1  mb-3 rounded  hoverButton1">
                     Add New
                   </button>
                 </Link>
@@ -24,7 +31,7 @@ const Home = () => {
                 <Link to="/taskList">
                   <button
                     type="button"
-                    className="w-75 py-1 rounded  hoverButton position-relative"
+                    className="w-75 py-1 rounded  hoverButton1 position-relative"
                   >
                     Task List
                     {storeTask.length >= 1 && (

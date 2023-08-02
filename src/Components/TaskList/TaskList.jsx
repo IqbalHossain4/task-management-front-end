@@ -57,7 +57,7 @@ const TaskList = () => {
       {storeTask.length !== 0 ? (
         <table className="table table-dark table-striped">
           <thead>
-            <tr>
+            <tr className="text-start">
               <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
@@ -68,9 +68,13 @@ const TaskList = () => {
           </thead>
           {storeTask.map((task, index) => (
             <tbody key={task._id}>
-              <tr>
+              <tr className="text-start">
                 <th scope="row">{index + 1}</th>
-                <td>{task.title}</td>
+                <td>
+                  <Link to={`/viewTask/${task._id}`} className="textColor">
+                    {task.title}
+                  </Link>
+                </td>
                 <td>{task.description.slice(0, 25)}</td>
                 <td>
                   <button

@@ -58,3 +58,10 @@ textarea {
   border: none;
   outline: none;
 }
+.textColor {
+  color: white;
+  transition: all 0.4s;
+}
+.textColor:hover {
+  color: #0bffff;
+}

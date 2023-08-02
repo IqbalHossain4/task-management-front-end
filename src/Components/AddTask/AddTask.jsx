@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 const AddTask = () => {
-  const [titleError, setTitleError] = useState("");
-  const [descError, setDescError] = useState("");
+  const [titleError, setTitleError] = useState(null);
+  const [descError, setDescError] = useState(null);
   //handle Add task
   const handleAddTask = (e) => {
     e.preventDefault();
-    setTitleError("");
-    setDescError("");
+
     const taskTitle = e.target.title.value;
     const taskDescription = e.target.description.value;
     //Error Handalling
+    setTitleError("");
+    setDescError("");
     if (taskTitle === "") {
       setTitleError("Your Title Field is Empty");
       return;
-    }
-
-    if (descError === "") {
+    } else if (descError === "") {
       setDescError("Your Description Field is Empty");
       return;
     }
@@ -48,7 +47,7 @@ const AddTask = () => {
       });
   };
   return (
-    <div className="w-75 mx-auto ">
+    <div className="">
       <h4 className="text-bg-dark   py-1">Add New Task</h4>
       <form onSubmit={handleAddTask}>
         <div className="text-start  d-flex flex-column mb-3">
