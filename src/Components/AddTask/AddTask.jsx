@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 const AddTask = () => {
+  const [titleError, setTitleError] = useState("");
+  const [descError, setDescError] = useState("");
   //handle Add task
   const handleAddTask = (e) => {
     e.preventDefault();
     const taskTitle = e.target.title.value;
     const taskDescription = e.target.description.value;
+    //Error Handalling
+
     const task = {
       title: taskTitle,
       description: taskDescription,
@@ -43,6 +47,7 @@ const AddTask = () => {
             name="title"
           />
         </div>
+        <p className="text-danger">{titleError}</p>
         <div className="text-start  d-flex flex-column mb-3">
           <label className="fs-6">Description</label>
           <textarea
@@ -52,6 +57,7 @@ const AddTask = () => {
             placeholder="Write Description"
           ></textarea>
         </div>
+        <p className="text-danger">{descError}</p>
         <input
           type="submit"
           className="btn btn-info fw-semibold"
