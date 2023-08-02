@@ -1,34 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-const AddTask = () => {
-  const [titleError, setTitleError] = useState("");
-  const [descError, setDescError] = useState("");
-  //handle Add task
-  const handleAddTask = (e) => {
+
+const EditTask = () => {
+  const taskData = useLoaderData();
+  //   handle Edit Task
+  const handleEditTask = (e) => {
     e.preventDefault();
-    setTitleError("");
-    setDescError("");
     const taskTitle = e.target.title.value;
     const taskDescription = e.target.description.value;
-    //Error Handalling
-    if (taskTitle === "") {
-      setTitleError("Your Title Field is Empty");
-      return;
-    }
-
-    if (descError === "") {
-      setDescError("Your Description Field is Empty");
-      return;
-    }
-
-    //post Task
     const task = {
       title: taskTitle,
       description: taskDescription,
-      status: "incomplete",
     };
-    fetch("http://localhost:5000/addTask", {
-      method: "POST",
+    fetch(`http://localhost:5000/editTask/${taskData._id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
@@ -36,7 +22,7 @@ const AddTask = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             position: "center",
             icon: "success",
@@ -48,9 +34,9 @@ const AddTask = () => {
       });
   };
   return (
-    <div className="w-75 mx-auto ">
-      <h4 className="text-bg-dark   py-1">Add New Task</h4>
-      <form onSubmit={handleAddTask}>
+    <div>
+      <h4 className="text-bg-dark   py-1">Edit Your Task</h4>
+      <form onSubmit={handleEditTask}>
         <div className="text-start  d-flex flex-column mb-3">
           <label className="fs-6">Title</label>
           <input
@@ -58,27 +44,29 @@ const AddTask = () => {
             className="ps-2  "
             placeholder="Title"
             name="title"
+            defaultValue={taskData.title}
           />
         </div>
-        <p className="text-danger">{titleError}</p>
+
         <div className="text-start  d-flex flex-column mb-3">
           <label className="fs-6">Description</label>
           <textarea
+            rows="4"
             name="description"
             className="w-100 ps-2"
-            rows="4"
             placeholder="Write Description"
+            defaultValue={taskData.description}
           ></textarea>
         </div>
-        <p className="text-danger">{descError}</p>
+
         <input
           type="submit"
           className="btn btn-info fw-semibold"
-          value={"Add Task"}
+          value={"Update Task"}
         />
       </form>
     </div>
   );
 };
 
-export default AddTask;
+export default EditTask;

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useTask from "../../Hooks/useTask";
 import Swal from "sweetalert2";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 const TaskList = () => {
   const [storeTask] = useTask();
   //   handle Status and Update Status
@@ -53,6 +53,7 @@ const TaskList = () => {
   };
   return (
     <div>
+      <h4 className="text-bg-dark  py-1">All Task List</h4>
       {storeTask.length !== 0 ? (
         <table className="table table-dark table-striped">
           <thead>
@@ -61,6 +62,7 @@ const TaskList = () => {
               <th scope="col">Title</th>
               <th scope="col">Description</th>
               <th scope="col">Status</th>
+              <th scope="col">Edit</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -81,6 +83,13 @@ const TaskList = () => {
                   >
                     {task.status}
                   </button>
+                </td>
+                <td>
+                  <Link to={`/editTask/${task._id}`}>
+                    <button className="makePointer rounded text-bg-info text-white ">
+                      <FaRegEdit />
+                    </button>
+                  </Link>
                 </td>
                 <td>
                   <button

@@ -5,6 +5,7 @@ import "./index.css";
 import Home from "./pages/Home.jsx";
 import AddTask from "./Components/AddTask/AddTask";
 import TaskList from "./Components/TaskList/TaskList";
+import EditTask from "./Components/EditTask/EditTask";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,12 @@ const router = createBrowserRouter([
       {
         path: "taskList",
         element: <TaskList />,
+      },
+      {
+        path: "editTask/:id",
+        element: <EditTask />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/tasks/${params.id}`),
       },
     ],
   },
