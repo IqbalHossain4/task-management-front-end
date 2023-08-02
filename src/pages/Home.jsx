@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -13,12 +13,14 @@ const Home = () => {
           <div className="col col-lg-2 h-100  border-end border-info">
             <ul>
               <li>
-                <button className=" border-0  w-50 py-1  mb-3 rounded bg-black text-bg-danger ">
-                  Add New
-                </button>
+                <Link to="/addTask">
+                  <button className="  w-75 py-1  mb-3 rounded  hoverButton1 ">
+                    Add New
+                  </button>
+                </Link>
               </li>
               <li>
-                <button className=" border-0  w-50 py-1 rounded bg-info text-bg-danger">
+                <button className="   w-75 py-1 rounded  hoverButton">
                   Task List
                 </button>
               </li>
