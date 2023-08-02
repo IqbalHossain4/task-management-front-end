@@ -52,3 +52,9 @@ input {
 textarea {
   outline: none;
 }
+
+.makePointer {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
