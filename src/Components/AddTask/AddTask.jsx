@@ -1,12 +1,35 @@
 import React from "react";
-
+import Swal from "sweetalert2";
 const AddTask = () => {
   //handle Add task
   const handleAddTask = (e) => {
     e.preventDefault();
     const taskTitle = e.target.title.value;
     const taskDescription = e.target.description.value;
-    console.log(taskTitle, taskDescription);
+    const task = {
+      title: taskTitle,
+      description: taskDescription,
+      status: "incomplete",
+    };
+    fetch("http://localhost:5000/addTask", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(task),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Successfully added Task",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div className="w-75 mx-auto ">
