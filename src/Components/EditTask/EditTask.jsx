@@ -13,13 +13,16 @@ const EditTask = () => {
       title: taskTitle,
       description: taskDescription,
     };
-    fetch(`http://localhost:5000/editTask/${taskData._id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(task),
-    })
+    fetch(
+      `https://task-management-back-end-kohl.vercel.app/editTask/${taskData._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

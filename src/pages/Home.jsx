@@ -11,7 +11,7 @@ const Home = () => {
             Task ManageMent System
           </nav>
           {/* Task sidebar */}
-          <div className="col col-lg-2 h-100  border-end border-info">
+          <div className="col col-lg-2  h-100  border-end border-info">
             <ul>
               <li>
                 <Link to="/">

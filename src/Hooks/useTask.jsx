@@ -4,7 +4,7 @@ const useTask = () => {
   const [storeTask, setStoreTask] = useState([]);
   // load Task
   useEffect(() => {
-    fetch("http://localhost:5000/tasks")
+    fetch("https://task-management-back-end-kohl.vercel.app/tasks")
       .then((res) => res.json())
       .then((data) => setStoreTask(data));
   }, [storeTask]);

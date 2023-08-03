@@ -7,12 +7,17 @@ import AddTask from "./Components/AddTask/AddTask";
 import TaskList from "./Components/TaskList/TaskList";
 import EditTask from "./Components/EditTask/EditTask";
 import ViewTask from "./Components/ViewTask/ViewTask";
+import HomePage from "./Components/HomePage/HomePage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
       {
         path: "addTask",
         element: <AddTask />,
@@ -25,13 +30,17 @@ const router = createBrowserRouter([
         path: "editTask/:id",
         element: <EditTask />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/tasks/${params.id}`),
+          fetch(
+            `https://task-management-back-end-kohl.vercel.app/tasks/${params.id}`
+          ),
       },
       {
         path: "viewTask/:id",
         element: <ViewTask />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/tasks/${params.id}`),
+          fetch(
+            `https://task-management-back-end-kohl.vercel.app/tasks/${params.id}`
+          ),
       },
     ],
   },
